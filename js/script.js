@@ -47,6 +47,7 @@ function addTask(e) {
         li.appendChild(link);
         taskList.appendChild(li);
         taskInput.value = "";
+
     }
 }
 function removeTask(e) {
@@ -54,7 +55,11 @@ function removeTask(e) {
         let elc = e.target.parentElement;
         elc.remove();
     }
-    document.getElementById("no_task").style.display = 'block';
+    if (taskList.children.length === 0) {
+        document.getElementById("no_task").style.display = 'block';
+    } else {
+        document.getElementById("no_task").style.display = 'none';
+    }
 }
 function clearToggleBtn() {
     if (taskList.children.length !== 0) {
@@ -72,7 +77,7 @@ function removeAll() {
         while (taskList.firstChild) {
             taskList.removeChild(taskList.firstChild);
         }
-        document.getElementById("no_task").innerHTML = "No Task Added Yet";
+
+        document.getElementById("no_task").style.display = 'block';
     }
-    document.getElementById("no_task").style.display = 'block';
 }
